@@ -124,7 +124,9 @@ module RTF
           return rtf.encode("UTF-16LE", :undef=>:replace).each_codepoint.map(&f).join('')
         else
           # You SHOULD use UTF-8 as input, ok?
-          return rtf.unpack('U*').map(&f).join('')
+          #return rtf.unpack('U*').map(&f).join('')
+          # throws encoding errors, so doing this instead:
+          return rtf.map().join('')          
         end
       end
    end # End of the TextNode class.
